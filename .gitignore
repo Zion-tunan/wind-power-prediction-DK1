@@ -1,0 +1,24 @@
+# System
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Notebooks
+.ipynb_checkpoints/
+*.ipynb~
+
+# Logs and outputs
+*.log
+logs/
+models/
+*.pth
+*.csv
+
+# VSCode
+.vscode/
+
+# Jupyter temp
+*.checkpoint.ipynb

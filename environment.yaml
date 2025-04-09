@@ -1,7 +1,7 @@
-
 name: predict_test
 channels:
   - conda-forge
+  - defaults
 dependencies:
   - python=3.9
   - pandas
@@ -9,4 +9,6 @@ dependencies:
   - matplotlib
   - scikit-learn
   - xgboost
+  - tensorflow
   - jupyter
+  - ipykernel
