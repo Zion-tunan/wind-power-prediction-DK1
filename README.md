@@ -11,8 +11,6 @@ This project demonstrates a complete machine learning pipeline to forecast wind 
   - **ECMWF** weather archive: windspeed, wind direction, temperature, humidity, pressure.
   - Original format cleaned and merged into a multivariate input file stored under `data/`.
 
-This project uses publicly available data from the **Open Power System Data (OPSD)** platform:
-
 - **Wind Power Actuals** for DK1:
   - Source: [OPSD - Renewable power generation](https://data.open-power-system-data.org/renewable_power_plants/)
   - Data range: Year 2016 (hourly resolution)
