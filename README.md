@@ -7,6 +7,10 @@ This project demonstrates a complete machine learning pipeline to forecast wind 
 
 ## 📡 Data Source
 
+- **Meteorological data**:
+  - **ECMWF** weather archive: windspeed, wind direction, temperature, humidity, pressure.
+  - Original format cleaned and merged into a multivariate input file stored under `data/`.
+
 This project uses publicly available data from the **Open Power System Data (OPSD)** platform:
 
 - **Wind Power Actuals** for DK1:
@@ -30,36 +34,31 @@ To ensure **data quality and reproducibility**:
 
 ## 🔧 Methods Overview
 
-We use the **XGBoost Regressor**, a gradient boosting model that builds an ensemble of decision trees, each learning from the residuals of the previous one. The model learns to map hourly wind speed data (from Aarhus) to the corresponding wind power generation in DK1.
+The following deep learning models were implemented and tested:
+
+- ✅ LSTM with Multi-head Attention
+- BiLSTM
+- GRU
+- LSTM (standard)
+- Transformer
+- Seq2Seq
 
 ### Key ML Technique:
-- **Model**: XGBoostRegressor
 - **Features**: Lagged wind speed, rolling means, wind speed differences, cubic wind speed, and temporal features (hour, weekday, season)
-
-### Metrics Used:
-- **RMSE (Root Mean Squared Error)**: Reflects average prediction deviation in MW, penalizing large errors
-- **R² Score**: Indicates percentage of variance explained by the model
 
 ---
 
-## 📊 Results Summary
+## 📊 Visual Results Summary
 
-| Model Version       | RMSE (MW) | R² Score |
-|--------------------|-----------|----------|
-| Baseline           | 400.41    | 0.60     |
-| Improved Features  | 358.68    | 0.68     |
-| Further Improved   | 108.00    | 0.97     |
 
-### 📈 Visual Results
+### 1. Loss Curve
+![Loss Curve](plots/LSTM_Attention_loss_curve.png)
 
-#### 1. Baseline Model
-![Wind Power Prediction](plots/Wind%20Power%20Prediction.png)
+### 2. Prediction on First 200 Samples
+![Prediction](plots/LSTM_Attention_prediction.png)
 
-#### 2. Improved Features
-![Improved Wind Power Prediction](plots/Improved%20Wind%20Power%20Prediction.png)
-
-#### 3. Further Improved (with Physical Insight)
-![Futher Improved Wind Power Prediction](plots/Futher%20Improved%20Wind%20Power%20Prediction.png)
+### 3. Training Results with Evaluation Metrics
+![Training](plots/LSTM_Attention_training.png)
 
 ---
 
@@ -111,6 +110,10 @@ While ML methods are powerful, they often lack explainability. Inspired by this,
 - **Probabilistic Modeling**: Quantify uncertainties (e.g., wind scenario distributions)
 - **Deterministic Simulation**: Feed scenarios into a power system model (e.g., PyPSA-Eur)
 - **Near-optimal Solution Space**: Solve multiple scenarios and extract feasible, interpretable decision spaces
+
+- **Iterative coupling between ML-predicted electricity prices and physics-based simulation (e.g., unit commitment, dispatch)**
+  - This could create a feedback loop for improved forecasting accuracy and economic realism.
+
 
 This would yield:
 - ✅ Forecasted prices **with physical traceability**
